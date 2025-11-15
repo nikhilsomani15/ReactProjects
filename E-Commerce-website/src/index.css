@@ -152,6 +152,7 @@ code {
   
   .product > button {
     background: #ff9f00;
+    padding: 5px;
     border: 1px solid;
     margin-top: 10px;
     border-color: #a88734 #9c7e31 #846a29;

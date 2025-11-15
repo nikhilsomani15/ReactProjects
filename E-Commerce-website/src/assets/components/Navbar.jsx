@@ -34,7 +34,7 @@ function Navbar() {
         <Link to="/checkout" style={{ textDecoration: "none" }}>
           <div className="nav__itemBasket">
             <ShoppingBasketIcon/>
-            <span className="nav__itemLineTwo nav__basketCount">{}</span>
+            <span className="nav__itemLineTwo nav__basketCount">{0}</span>
           </div>
         </Link>
       </div>
