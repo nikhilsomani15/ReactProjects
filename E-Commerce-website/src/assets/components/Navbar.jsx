@@ -2,12 +2,12 @@ import React from "react";
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import SearchIcon from '@mui/icons-material/Search';
-import Link from "@mui/material/Link";
+import {Link} from "react-router-dom";
 function Navbar() {
 
     return (
         <div className="header">
-          <Link to="/" style={{ textDecoration:"none" }}>
+          <Link to="/">
             <div className="header__logo">
                 <StorefrontIcon className="header__logoImage" fontSize="large"/>
                 <h2 className="header__logoTitle">eShop</h2>
@@ -31,7 +31,7 @@ function Navbar() {
           <span className="nav__itemLineOne">Your</span>
           <span className="nav__itemLineTwo">Shop</span>
         </div>
-        <Link to="/checkout" style={{ textDecoration: "none" }}>
+        <Link to="/checkout">
           <div className="nav__itemBasket">
             <ShoppingBasketIcon/>
             <span className="nav__itemLineTwo nav__basketCount">{0}</span>
