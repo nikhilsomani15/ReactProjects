@@ -1,9 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
-let basket = [1, 2];
+
 function Subtotal() {
+    const basket=useSelector(state=>state.cart.basket)
   function getBasketTotal(n) {
-    return 10;
+    return n.reduce((acc,curr)=>acc+curr.price,0)
   }
 
   const formattedTotal = new Intl.NumberFormat("en-IN", {
