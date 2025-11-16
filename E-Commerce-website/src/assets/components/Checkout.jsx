@@ -1,9 +1,10 @@
 import React from 'react'
 import CheckoutProduct from './CheckoutProduct'
 import Subtotal from './Subtotal'
+import { useSelector } from 'react-redux'
 
 const Checkout= ()=> {
-
+    const basket=useSelector(state=>state.cart.basket)
     return (
         <div className="checkout">
             <div className="checkout__left">
@@ -12,7 +13,7 @@ const Checkout= ()=> {
                     <h2 className="checkout__title">
                         Your Shopping Basket
                     </h2>
-                    {/* {basket.map(item => (
+                    {basket.map(item => (
                         <CheckoutProduct 
                             id = {item.id}
                             title = {item.title}
@@ -20,8 +21,8 @@ const Checkout= ()=> {
                             price = {item.price}
                             rating = {item.rating}
                         />
-                    ))} */}
-                    <CheckoutProduct/>
+                    ))}
+                    
                 </div>
             </div>
 

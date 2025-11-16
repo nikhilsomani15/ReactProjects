@@ -1,8 +1,19 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../../features/CartSlice";
 
 const Product = ({ id, title, image, price, rating }) => {
-  function addToBasket() {
-    console.log("hi");
+    const data=useSelector(state=>state.cart.basket)
+    console.log(data)
+    const dispatch=useDispatch()
+    function addToBasket() {
+    dispatch(addToCart({
+        id,
+        title,
+        image,
+        price,
+        rating
+    }))
   }
   return (
     <div className="product">
@@ -25,7 +36,7 @@ const Product = ({ id, title, image, price, rating }) => {
 
       <img src={image} />
 
-      <button onClick={addToBasket}>Add to Basket</button>
+      <button onClick={()=>addToBasket()}>Add to Basket</button>
     </div>
   );
 };
