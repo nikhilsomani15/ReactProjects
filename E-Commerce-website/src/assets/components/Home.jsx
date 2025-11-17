@@ -16,6 +16,7 @@ import Product from './Product'
                         rating={5}
                         image="https://images-na.ssl-images-amazon.com/images/I/71mEsHyzSCL._SL1000_.jpg"
                         quantity
+                        totalQuantity={10}
                     />
                     <Product
                         id={49538094}
@@ -24,6 +25,7 @@ import Product from './Product'
                         rating={4}
                         image="https://images-na.ssl-images-amazon.com/images/I/81D8pNFmWzL._SL1500_.jpg"
                         quantity
+                         totalQuantity={7}
                     />
                 </div>
 
@@ -35,6 +37,7 @@ import Product from './Product'
                         rating={3}
                         image="https://images-eu.ssl-images-amazon.com/images/I/514kNkerQ0L._SY264_BO1,204,203,200_QL40_FMwebp_.jpg"
                         quantity
+                         totalQuantity={5}
                     />
                     <Product
                         id={23445930}
@@ -43,6 +46,7 @@ import Product from './Product'
                         rating={5}
                         image="https://media.very.co.uk/i/very/P6LTG_SQ1_0000000071_CHARCOAL_SLf?$300x400_retinamobilex2$"
                         quantity
+                         totalQuantity={20}
                     />
                     <Product
                         id={3254354345}
@@ -51,6 +55,7 @@ import Product from './Product'
                         rating={4}
                         image="https://images-na.ssl-images-amazon.com/images/I/816ctt5WV5L._AC_SX385_.jpg"
                         quantity
+                         totalQuantity={20}
                     />
                 </div>
 
@@ -62,6 +67,7 @@ import Product from './Product'
                         rating={4}
                         image="https://images-na.ssl-images-amazon.com/images/I/6125mFrzr6L._AC_SX355_.jpg"
                         quantity
+                         totalQuantity={20}
                     />
                 </div>
             </div>   

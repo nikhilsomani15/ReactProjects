@@ -2,8 +2,12 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../features/CartSlice";
 
-const Product = ({ id, title, image, price, rating,quantity }) => {
+const Product = ({ id, title, image, price, rating,quantity,totalQuantity }) => {
     const dispatch=useDispatch()
+    let test=useSelector(state=>state.cart.basket)
+    let q=test.find(i=>i.id===id)
+   let tot=q?.totalQuantity ?? totalQuantity
+
     function addToBasket() {
     dispatch(addToCart({
         id,
@@ -11,8 +15,10 @@ const Product = ({ id, title, image, price, rating,quantity }) => {
         image,
         price,
         rating,
-        quantity
+        quantity,
+        totalQuantity
     }))
+    
   }
   return (
     <div className="product">
@@ -21,11 +27,13 @@ const Product = ({ id, title, image, price, rating,quantity }) => {
         <p className="product__price">
           <small>Rs. </small>
           <strong>{price}</strong>
+          <br />
+          <strong>Quantity Left= {tot}</strong>
         </p>
         <div className="product__rating">
           {
             Array.from({
-                length:rating
+                length:rating 
             },(_,i)=>(<p key={i}>
                 ⭐
             </p>))

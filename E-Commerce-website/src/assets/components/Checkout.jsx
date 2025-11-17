@@ -22,6 +22,7 @@ const Checkout= ()=> {
                             price = {item.price}
                             rating = {item.rating}
                             quantity={item.quantity}
+                            totalQuantity={item.totalQuantity}
                         />
                     ))}
                     
