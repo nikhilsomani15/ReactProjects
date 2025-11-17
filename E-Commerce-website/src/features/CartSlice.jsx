@@ -8,12 +8,27 @@ const CartSlice = createSlice({
   initialState,
   reducers: {
     addToCart(state, action){
-       
-        if(!state.basket.some(i=>i.id==action.payload.id))
-        state.basket.push(action.payload)
+        
+        let exist=state.basket.find(i=>i.id==action.payload.id)
+        if(exist){
+          exist.quantity+=1
+        }
+        else{
+          state.basket.push({...action.payload,quantity:1})
+        }
     },
     removeFromCart(state, action) {
-      state.basket = state.basket.filter((i) => i.id !== action.payload.id);
+      
+      let exist=state.basket.find(item=>item.id===action.payload.id)
+      console.log("exist quantity =", exist.quantity, typeof exist.quantity);
+      if(!exist) return
+      if(exist.quantity>1){
+        exist.quantity-=1
+      }
+      else if(exist.quantity===1){
+        state.basket = state.basket.filter((i) => i.id !== action.payload.id);
+      }
+      
     },
   },
 });

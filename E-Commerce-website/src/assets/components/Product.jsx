@@ -2,9 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../features/CartSlice";
 
-const Product = ({ id, title, image, price, rating }) => {
-    const data=useSelector(state=>state.cart.basket)
-    console.log(data)
+const Product = ({ id, title, image, price, rating,quantity }) => {
     const dispatch=useDispatch()
     function addToBasket() {
     dispatch(addToCart({
@@ -12,7 +10,8 @@ const Product = ({ id, title, image, price, rating }) => {
         title,
         image,
         price,
-        rating
+        rating,
+        quantity
     }))
   }
   return (

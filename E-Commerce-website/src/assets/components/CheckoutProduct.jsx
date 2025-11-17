@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart } from "../../features/CartSlice";
 
-const CheckoutProduct = ({ id, image, title, price, rating }) => {
+const CheckoutProduct = ({ id, image, title, price, rating,quantity }) => {
   const dispatch = useDispatch();
   const removeFromBasket = () => {
     dispatch(removeFromCart({id}))
@@ -13,9 +13,12 @@ const CheckoutProduct = ({ id, image, title, price, rating }) => {
 
       <div className="checkoutProduct__info">
         <p className="checkoutProduct__title">{title}</p>
+
         <p className="checkoutProduct__price">
           <small>$</small>
           <strong>{price}</strong>
+          <br />
+          <strong>Item Count = {quantity}</strong>
         </p>
         <div className="checkoutProduct__rating">
           { Array.from({

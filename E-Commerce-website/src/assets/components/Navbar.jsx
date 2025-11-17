@@ -35,7 +35,7 @@ function Navbar() {
         <Link to="/checkout">
           <div className="nav__itemBasket">
             <ShoppingBasketIcon/>
-            <span className="nav__itemLineTwo nav__basketCount">{count.length}</span>
+            <span className="nav__itemLineTwo nav__basketCount">{count.reduce((acc,curr)=>acc+curr.quantity,0)}</span>
           </div>
         </Link>
       </div>

@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 function Subtotal() {
     const basket=useSelector(state=>state.cart.basket)
   function getBasketTotal(n) {
-    return n.reduce((acc,curr)=>acc+curr.price,0)
+    return n.reduce((acc,curr)=>acc+(curr.price*curr.quantity),0)
   }
 
   const formattedTotal = new Intl.NumberFormat("en-IN", {
@@ -16,7 +16,7 @@ function Subtotal() {
   return (
     <div className="subtotal">
       <p>
-        Subtotal ({basket.length} items): <strong>{formattedTotal}</strong>
+        Subtotal ({basket.reduce((acc,curr)=>acc+curr.quantity,0)} items): <strong>{formattedTotal}</strong>
       </p>
 
       <small className="subtotal__gift">

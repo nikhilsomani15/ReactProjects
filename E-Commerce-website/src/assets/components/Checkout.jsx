@@ -13,13 +13,15 @@ const Checkout= ()=> {
                     <h2 className="checkout__title">
                         Your Shopping Basket
                     </h2>
-                    {basket.map(item => (
+                    {basket.map((item,key) => (
                         <CheckoutProduct 
+                        key={key}
                             id = {item.id}
                             title = {item.title}
                             image = {item.image}
                             price = {item.price}
                             rating = {item.rating}
+                            quantity={item.quantity}
                         />
                     ))}
                     
