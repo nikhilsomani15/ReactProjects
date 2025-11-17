@@ -13,7 +13,12 @@ function Login() {
     let user
     const signIn = (e) => {
         e.preventDefault();
+        let cleanEmail=email.trim()
         
+        if(!cleanEmail || !cleanEmail.includes("@") || password.length<8){
+            alert("Please enter a valid email address and password");
+            return
+        }
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user=userCredential.user.email
@@ -21,12 +26,17 @@ function Login() {
                 dispatch(displayName(userName[0]))
                 navigate('/');   // redirect to home
             })
-            .catch((err) => alert(err.message));
+            .catch((err) => {
+                console.log(err);
+                alert(err.message)});
     }
 
     const register = (e) => {
         e.preventDefault();
-
+        if(!cleanEmail || !cleanEmail.includes("@") || password.length<8){
+            alert("Please enter a valid email address and password");
+            return
+        }
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 navigate('/');   // redirect to home
