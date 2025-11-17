@@ -4,11 +4,15 @@ import StorefrontIcon from '@mui/icons-material/Storefront';
 import SearchIcon from '@mui/icons-material/Search';
 import {Link} from "react-router-dom";
 import { useSelector } from "react-redux";
+import { displayName } from "../../features/CartSlice";
+
 function Navbar() {
     const count=useSelector(state=>state.cart.basket)
+    const display=useSelector(state=>state.cart.displayName1) || "Guest"
+    let user;
     return (
         <div className="header">
-          <Link to="/">
+          <Link to="/login">
             <div className="header__logo">
                 <StorefrontIcon className="header__logoImage" fontSize="large"/>
                 <h2 className="header__logoTitle">eShop</h2>
@@ -24,8 +28,8 @@ function Navbar() {
       <div className="header__nav">
         <Link to="/login" style={{ textDecoration:"none" }}>
           <div className="nav__item">
-            <span className="nav__itemLineOne">Hello Guest</span>
-            <span className="nav__itemLineTwo">Sign In</span>
+            <span className="nav__itemLineOne">Hello {display}</span>
+            <span className="nav__itemLineTwo">{display !=="Guest"?"Sign-Out":"Sign In"}</span>
           </div>
         </Link>
         <div className="nav__item">

@@ -6,6 +6,7 @@ import Navbar from './assets/components/Navbar'
 import Home from './assets/components/Home'
 import { Route, Routes } from 'react-router-dom'
 import Checkout from './assets/components/Checkout'
+import Login from './assets/components/Login'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -20,14 +21,14 @@ function App() {
           <Checkout/>
           </>
         }/>
-
+        <Route path='/login' element={<Login/>}/>
         <Route path='/' element={
           <>
           <Navbar/>
           <Home/>
           </>
         } />
-
+        
         <Route path='*' element={<h1>Error</h1>}/>
       </Routes>
 

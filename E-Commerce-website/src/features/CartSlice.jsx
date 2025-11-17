@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import React from "react";
 const initialState = {
   basket: [],
+  displayName1:''
 };
 const CartSlice = createSlice({
   name: "Cart",
@@ -33,7 +34,10 @@ const CartSlice = createSlice({
       }
       
     },
+    displayName(state,action){
+      state.displayName1=action.payload
+    }
   },
 });
-export const { addToCart, removeFromCart } = CartSlice.actions;
+export const { addToCart, removeFromCart,displayName } = CartSlice.actions;
 export default CartSlice.reducer;
