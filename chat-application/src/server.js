@@ -5,6 +5,7 @@ import { Server } from "socket.io";
 const app = express();  //configuration
 const server = createServer(app);
 
+const group="joinGroup"
 const io=new Server(server,{
     cors:{
         origin:'*'
@@ -13,6 +14,10 @@ const io=new Server(server,{
 
 io.on('connection', (socket) => {
   console.log('a user connected',socket.id);
+    socket.on('joinRoom',async (name)=>{
+        console.log(`${name} joined the group`)
+        await socket.join(group)
+    })
 });
 
 app.get('/', (req, res) => {

@@ -14,6 +14,7 @@ export default function App() {
     
     useEffect(()=>{
       socket.current =connectWS()
+      socket.current.on('')
     },[])
 
     function formatTime(ts) {
@@ -134,7 +135,7 @@ export default function App() {
                                                 ? 'bg-[#DCF8C6] text-[#303030] rounded-br-2xl'
                                                 : 'bg-white text-[#303030] rounded-bl-2xl'
                                         }`}>
-                                        <div className="break-words whitespace-pre-wrap">
+                                        <div className="wrap-break-word whitespace-pre-wrap">
                                             {m.text}
                                         </div>
                                         <div className="flex justify-between items-center mt-1 gap-16">
