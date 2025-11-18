@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart } from "../../features/CartSlice";
 
-const CheckoutProduct = ({ id, image, title, price, rating,quantity }) => {
+const CheckoutProduct = ({ id, image, title, price, rating,quantity,totalQuantity }) => {
   const dispatch = useDispatch();
   const removeFromBasket = () => {
     dispatch(removeFromCart({id}))
