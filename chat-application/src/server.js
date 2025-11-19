@@ -13,10 +13,8 @@ const io=new Server(server,{
 })
 const group="joinGroup"
 io.on('connection', (socket) => {
-  console.log('a user connected',socket.id);
-    socket.on('joinRoom',async (userName)=>{
-         console.log(`${userName}is joining the group`)
-        await socket.join(group)
+    socket.on('joinRoom',async (userName)=>{      //Recive username from frontend
+        await socket.join(group)                 // Add user to a room (joinGroup)
 
         // io.to(group).emit('roomJoinedNotification',userName)
        
@@ -33,6 +31,8 @@ io.on('connection', (socket) => {
      socket.on('stopTyping',async userName=>{
         socket.to(group).emit('stopTyping',userName)
     })
+
+    
 });
 
 app.get('/', (req, res) => {

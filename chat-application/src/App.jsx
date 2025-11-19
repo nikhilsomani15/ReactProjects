@@ -37,33 +37,32 @@ export default function App() {
         });
       });
     });
-    return ()=>{
-         socket.current.off('roomJoinedNotification')
-         socket.current.off('chatMessage')
-         socket.current.off('typing')
-         socket.current.off('stopTyping')
-         
-    }
+    return () => {
+      socket.current.off("roomJoinedNotification");
+      socket.current.off("chatMessage");
+      socket.current.off("typing");
+      socket.current.off("stopTyping");
+    };
   }, []);
 
   useEffect(() => {
-    if(text===''){
+    if (text === "") {
       socket.current.emit("stopTyping", userName);
-        return
+      return;
     }
     if (text) {
       socket.current.emit("typing", userName);
 
       clearTimeout(timer.current);
-        timer.current = setTimeout(() => {
-        if(text=='') return
-      socket.current.emit("stopTyping", userName);
-    }, 1000);
+      timer.current = setTimeout(() => {
+        if (text == "") return;
+        socket.current.emit("stopTyping", userName);
+      }, 1000);
     }
-  
-    return ()=>{
-        clearTimeout(timer.current)
-    }
+
+    return () => {
+      clearTimeout(timer.current);
+    };
   }, [text, userName]);
 
   function formatTime(ts) {
@@ -115,7 +114,7 @@ export default function App() {
       {showNamePopup && (
         <div className="fixed inset-0 flex items-center justify-center z-40">
           <div className="bg-white rounded-xl shadow-lg max-w-md p-6">
-            <h1 className="text-xl font-semibold text-black">
+            <h1 className="text-center md:text-left text-lg md:text-xl font-semibold text-black">
               Enter your name
             </h1>
             <p className="text-sm text-gray-500 mt-1">
@@ -131,7 +130,7 @@ export default function App() {
               />
               <button
                 type="submit"
-                className="@apply block ml-auto mt-3 px-4 py-1.5 rounded-full bg-green-500 text-white font-medium cursor-pointer"
+                className=" block mx-auto md:ml-auto mt-3 px-4 py-1.5 rounded-full bg-green-500 text-white font-medium cursor-pointer"
               >
                 Continue
               </button>
