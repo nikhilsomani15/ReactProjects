@@ -77,7 +77,7 @@ export default function App() {
     const trimmed = inputName.trim();
     if (!trimmed) return;
     setUserName(trimmed);
-    socket.current.emit("joinRoom", trimmed);
+    socket.current.emit("roomJoinedNotification", trimmed);
     // -- used as in React state updates are asyncronous
     setShowNamePopup(false);
   }

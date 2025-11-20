@@ -13,7 +13,7 @@ const io=new Server(server,{
 })
 const group="joinGroup"
 io.on('connection', (socket) => {
-    socket.on('joinRoom',async (userName)=>{      //Recive username from frontend
+    socket.on('roomJoinedNotification',async (userName)=>{      //Recive username from frontend
         await socket.join(group)                 // Add user to a room (joinGroup)
 
         // io.to(group).emit('roomJoinedNotification',userName)
@@ -22,17 +22,15 @@ io.on('connection', (socket) => {
         socket.to(group).emit("roomJoinedNotification",userName)
 
     })
-    socket.on('chatMessage',async (msg)=> {
+    socket.on('chatMessage', msg=> {
         socket.to(group).emit('chatMessage',msg)
     })
-    socket.on('typing',async userName=>{
+    socket.on('typing', userName=>{
         socket.to(group).emit('typing',userName)
     })
-     socket.on('stopTyping',async userName=>{
+     socket.on('stopTyping', userName=>{
         socket.to(group).emit('stopTyping',userName)
     })
-
-    
 });
 
 app.get('/', (req, res) => {
@@ -41,4 +39,8 @@ app.get('/', (req, res) => {
 
 server.listen(3000, () => {
   console.log('server running at http://localhost:3000');
+});
+
+app.use('*', (req, res) => {
+  res.status(404).send('Route not found');
 });
