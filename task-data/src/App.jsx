@@ -16,14 +16,14 @@ function App() {
       setTasks(filteredData) 
   }
   return (
-    <div className="app">
+    <>
       <Header setTasks={setTasks} />
-      <main className="app_main">
+        <main className="app_main">
         <TaskColumn tasks={tasks} title="To do" icon={todoIcon} status="todo" handleDelete={handleDelete} />
         <TaskColumn tasks={tasks} title="Doing" icon={doingIcon} status="doing" handleDelete={handleDelete} />
         <TaskColumn tasks={tasks} title="Done" icon={doneIcon} status="done" handleDelete={handleDelete} />
       </main>
-    </div>
+    </>
   );
 }
 
