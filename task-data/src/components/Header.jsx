@@ -52,6 +52,7 @@ const Header = ({ setTasks }) => {
       status: 'todo',
       tagName: [],
     });
+    localStorage.setItem('task',setTasks)
   };
   return (
     <div className="app_header">

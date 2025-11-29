@@ -6,14 +6,25 @@ import TaskColumn from "./components/TaskColumn";
 import todoIcon from "./assets/direct-hit.png";
 import doingIcon from "./assets/glowing-star.png";
 import doneIcon from "./assets/check-mark-button.png";
+import { useEffect } from "react";
+
 function App() {
 
-  const [tasks, setTasks] = useState([])
+  const [tasks, setTasks] = useState(()=>{
+    const data=JSON.parse(localStorage.getItem('task'))
+    return [] || data
+  }
+)
+  useEffect(()=>{
+      localStorage.setItem('task',JSON.stringify(tasks))
+  },[tasks])
+
   const handleDelete=(e)=>{
       const filteredData=tasks.filter((t,i)=>
         i!==e
       )
       setTasks(filteredData) 
+      
   }
   return (
     <>
