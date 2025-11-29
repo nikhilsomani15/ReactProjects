@@ -48,11 +48,10 @@ const Header = ({ setTasks }) => {
       return [...p, taskData];
     });
     setTaskData({
-    
-            task: "",
-            status:taskData.status,
-    tagName: [],
-    })
+      task: "",
+      status: 'todo',
+      tagName: [],
+    });
   };
   return (
     <div className="app_header">
@@ -93,11 +92,12 @@ const Header = ({ setTasks }) => {
           <div>
             <select
               name="status"
+              value={taskData.status}
               className="task_status"
               onChange={handleOnCHange}
             >
               {statusOptions.map((s) => (
-                <option key={s} value={s}  >
+                <option key={s} value={s}>
                   {s.charAt(0).toUpperCase() + s.slice(1)}
                 </option>
               ))}
