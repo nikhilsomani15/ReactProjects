@@ -7,13 +7,15 @@ import todoIcon from "./assets/direct-hit.png";
 import doingIcon from "./assets/glowing-star.png";
 import doneIcon from "./assets/check-mark-button.png";
 function App() {
+
+  const [tasks, setTasks] = useState([])
   return (
     <div className="app">
-      <Header />
+      <Header setTasks={setTasks} />
       <main className="app_main">
-        <TaskColumn title="To do" icon={todoIcon} status="todo" />
-        <TaskColumn title="Doing" icon={doingIcon} status="doing" />
-        <TaskColumn title="Done" icon={doneIcon} status="done" />
+        <TaskColumn tasks={tasks} title="To do" icon={todoIcon} status="todo" />
+        <TaskColumn tasks={tasks} title="Doing" icon={doingIcon} status="doing" />
+        <TaskColumn tasks={tasks} title="Done" icon={doneIcon} status="done" />
       </main>
     </div>
   );

@@ -132,6 +132,6 @@
 }
 .app_main{
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: space-around;
 }
