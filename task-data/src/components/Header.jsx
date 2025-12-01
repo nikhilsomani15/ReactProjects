@@ -44,6 +44,8 @@ const Header = ({ setTasks }) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if(taskData.task.trim()==="") return
     setTasks((p) => {
       return [...p, taskData];
     });
@@ -52,7 +54,7 @@ const Header = ({ setTasks }) => {
       status: 'todo',
       tagName: [],
     });
-    localStorage.setItem('task',setTasks)
+    
   };
   return (
     <div className="app_header">

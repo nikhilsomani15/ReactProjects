@@ -81,7 +81,11 @@
   border-radius: 10px;
   padding: 15px;
   margin: 15px 0;
-
+  cursor: grab;
+}
+.task_card:active{
+  opacity: .6;
+  border: 1px solid rgb(1, 1, 1);
 }
 
 .task_text {
@@ -127,7 +131,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0px;
+  margin-bottom: 10px;
 }
 
 .task_column_icon {
@@ -163,4 +167,19 @@
   flex-direction: column;  /* stack tasks under heading */
   gap: 15px;
   flex: 1;                 
+}
+
+.drop_area {
+width: 100%;
+min-height: 100px; 
+color: #797575;
+border: 1px dashed #797575;
+border-radius: 10px;
+padding: 15px;
+margin-bottom: 15px;
+opacity: 1;
+transition: all .2s ease-in-out;
+}
+.hidden{
+  opacity: 0;
 }
