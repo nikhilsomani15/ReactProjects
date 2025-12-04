@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import lodash from "lodash";
 
 import "./MovieList.css";
 import Fire from "../../assets/fire.png";
 import MovieCard from "./MovieCard";
+import FilteredData from "./FilteredData";
 
 const MovieList = () => {
   const [movieList, setMovieList] = useState([]);
   const [minRating, setMinRating] = useState(0);
   const [filteredList, setFilteredList] = useState([]);
+  const [sort, setSort] = useState({
+    by: "default",
+    order: "asc",
+  });
 
   const options = {
     method: "GET",
@@ -28,7 +34,12 @@ const MovieList = () => {
 
     fetchMovieData();
   }, []);
-
+  useEffect(() => {
+    if (sort.by !== "default") {
+      const sortedMovie = lodash.orderBy(filteredList, [sort.by], [sort.order]);
+      setFilteredList(sortedMovie);
+    }
+  }, [sort]);
   const fetchMovieData = async () => {
     const res = await fetch(
       "https://api.themoviedb.org/3/movie/popular",
@@ -37,7 +48,6 @@ const MovieList = () => {
     const data = await res.json();
     setMovieList(data.results);
     setFilteredList(data.results);
-    console.log(data);
   };
 
   const handleFilter = (rating) => {
@@ -53,6 +63,12 @@ const MovieList = () => {
     }
   };
 
+  const handleSort = (e) => {
+    const { name, value } = e.target;
+    console.log(name, value);
+    setSort((p) => ({ ...p, [name]: value }));
+  };
+
   return (
     <section className="movie_list">
       <header className="align_center movie_list_header">
@@ -61,47 +77,32 @@ const MovieList = () => {
         </h2>
 
         <div className="align_center movie_list_fs">
-          <ul className="align_center movie_filter">
-            <li
-              className={
-                minRating === 8
-                  ? "movie_filter_item active"
-                  : "movie_filter_item"
-              }
-              onClick={() => handleFilter(8)}
-            >
-              8+ Star
-            </li>
-            <li
-              className={
-                minRating === 7
-                  ? "movie_filter_item active"
-                  : "movie_filter_item"
-              }
-              onClick={() => handleFilter(7)}
-            >
-              7+ Star
-            </li>
-            <li
-              className={
-                minRating === 6
-                  ? "movie_filter_item active"
-                  : "movie_filter_item"
-              }
-              onClick={() => handleFilter(6)}
-            >
-              6+ Star
-            </li>
-          </ul>
+          <FilteredData
+            minRating={minRating}
+            rating={[6, 7, 8]}
+            handleFilter={handleFilter}
+          />
 
-          <select name="" id="" className="movie_sorting">
-            <option value="">SortBy</option>
-            <option value="">Date</option>
-            <option value="">Rating</option>
+          <select
+            name="by"
+            id=""
+            className="movie_sorting"
+            onChange={handleSort}
+            value={sort.by}
+          >
+            <option value="default">SortBy</option>
+            <option value="release_date">Date</option>
+            <option value="vote_average">Rating</option>
           </select>
-          <select name="" id="" className="movie_sorting">
-            <option value="">Ascending</option>
-            <option value="">Descending</option>
+          <select
+            name="order"
+            id=""
+            className="movie_sorting"
+            value={sort.order}
+            onChange={handleSort}
+          >
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
           </select>
         </div>
       </header>
