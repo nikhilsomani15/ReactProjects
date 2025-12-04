@@ -7,13 +7,15 @@ import MovieCard from "./MovieCard";
 
 const MovieList = () => {
   const [movieList, setMovieList] = useState([]);
+  const [minRating, setMinRating] = useState(0);
+  const [filteredList, setFilteredList] = useState([]);
 
   const options = {
     method: "GET",
     url: "https://api.themoviedb.org/3/authentication/token/new",
     headers: {
       accept: "application/json",
-      Authorization: `Bearer ${process.env.REACT_APP_TMDB_API_KEY}`,
+      Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_KEY}`,
     },
   };
 
@@ -34,7 +36,21 @@ const MovieList = () => {
     );
     const data = await res.json();
     setMovieList(data.results);
+    setFilteredList(data.results);
     console.log(data);
+  };
+
+  const handleFilter = (rating) => {
+    if (minRating === rating) {
+      setMinRating(0);
+      setFilteredList(movieList);
+    } else {
+      setMinRating(rating);
+      const filteredMovie = movieList.filter(
+        (elem) => elem.vote_average >= rating
+      );
+      setFilteredList(filteredMovie);
+    }
   };
 
   return (
@@ -46,9 +62,36 @@ const MovieList = () => {
 
         <div className="align_center movie_list_fs">
           <ul className="align_center movie_filter">
-            <li className="movie_filter_item active">8+ Star</li>
-            <li className="movie_filter_item">7+ Star</li>
-            <li className="movie_filter_item">6+ Star</li>
+            <li
+              className={
+                minRating === 8
+                  ? "movie_filter_item active"
+                  : "movie_filter_item"
+              }
+              onClick={() => handleFilter(8)}
+            >
+              8+ Star
+            </li>
+            <li
+              className={
+                minRating === 7
+                  ? "movie_filter_item active"
+                  : "movie_filter_item"
+              }
+              onClick={() => handleFilter(7)}
+            >
+              7+ Star
+            </li>
+            <li
+              className={
+                minRating === 6
+                  ? "movie_filter_item active"
+                  : "movie_filter_item"
+              }
+              onClick={() => handleFilter(6)}
+            >
+              6+ Star
+            </li>
           </ul>
 
           <select name="" id="" className="movie_sorting">
@@ -64,7 +107,7 @@ const MovieList = () => {
       </header>
 
       <div className="movie_cards">
-        {movieList.map((movie) => (
+        {filteredList.map((movie) => (
           <MovieCard key={movie.id} movie={movie} />
         ))}
       </div>
