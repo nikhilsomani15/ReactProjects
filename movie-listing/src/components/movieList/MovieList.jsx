@@ -7,7 +7,7 @@ import Fire from "../../assets/fire.png";
 import MovieCard from "./MovieCard";
 import FilteredData from "./FilteredData";
 
-const MovieList = () => {
+const MovieList = ({ type, title, emoji }) => {
   const [movieList, setMovieList] = useState([]);
   const [minRating, setMinRating] = useState(0);
   const [filteredList, setFilteredList] = useState([]);
@@ -18,7 +18,7 @@ const MovieList = () => {
 
   const options = {
     method: "GET",
-    url: "https://api.themoviedb.org/3/authentication/token/new",
+    url: `https://api.themoviedb.org/3/authentication/token/new`,
     headers: {
       accept: "application/json",
       Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_KEY}`,
@@ -33,7 +33,7 @@ const MovieList = () => {
     //   .catch(err => console.error(err));
 
     fetchMovieData();
-  }, []);
+  }, [type]);
   useEffect(() => {
     if (sort.by !== "default") {
       const sortedMovie = lodash.orderBy(filteredList, [sort.by], [sort.order]);
@@ -42,7 +42,7 @@ const MovieList = () => {
   }, [sort]);
   const fetchMovieData = async () => {
     const res = await fetch(
-      "https://api.themoviedb.org/3/movie/popular",
+      `https://api.themoviedb.org/3/movie/${type}`,
       options
     );
     const data = await res.json();
@@ -73,7 +73,7 @@ const MovieList = () => {
     <section className="movie_list">
       <header className="align_center movie_list_header">
         <h2 className="align_center movie_list_heading">
-          Popular <img src={Fire} alt="fire emoji" className="navbar_emoji" />
+          {title} <img src={emoji} alt="emoji" className="navbar_emoji" />
         </h2>
 
         <div className="align_center movie_list_fs">
