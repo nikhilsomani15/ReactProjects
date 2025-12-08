@@ -3,8 +3,9 @@ import React from "react";
 import "./CartPage.css";
 import remove from "../../assets/remove.png";
 import user from "../../assets/user.webp";
-import QuantityInput from "../SingleProduct/QuantityInput";
+
 import Table from "../common/Table";
+import QuantityInput from "../singleproducts/QuantityInput";
 
 const CartPage = () => {
   return (
