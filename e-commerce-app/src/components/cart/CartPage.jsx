@@ -3,8 +3,8 @@ import React from "react";
 import "./CartPage.css";
 import remove from "../../assets/remove.png";
 import user from "../../assets/user.webp";
-import Table from "../Common/Table";
 import QuantityInput from "../SingleProduct/QuantityInput";
+import Table from "../common/Table";
 
 const CartPage = () => {
   return (
