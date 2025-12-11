@@ -19,7 +19,7 @@ const ProductsSidebar = () => {
           data.map((p) => (
             <LinkWithIcon
               title={p.name}
-              link={`products?category=${p.name}`}
+              link={`/products?category=${p.name}`}
               emoji={`http://localhost:5000/category/${p.image}`}
               sidebar={true}
               key={p._id}

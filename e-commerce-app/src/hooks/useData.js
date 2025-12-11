@@ -1,18 +1,27 @@
 import React, { useEffect, useState } from "react";
 import apiClient from "../utils/api-client";
 
-const useData = (url) => {
+const useData = (url, customConfig, deps) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState("");
-  useEffect(() => {
-    apiClient
-      .get(url)
-      .then((res) => {
-        setData(res.data);
-      })
-      .catch((err) => setError(err.message));
-  }, []);
-  return { data, error };
+  const [isLoading, setIsLoading] = useState(false);
+  useEffect(
+    () => {
+      setIsLoading(true);
+      apiClient
+        .get(url, customConfig)
+        .then((res) => {
+          setData(res.data);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          setError(err.message);
+          setIsLoading(false);
+        });
+    },
+    deps ? deps : []
+  );
+  return { data, error, isLoading };
 };
 
 export default useData;
